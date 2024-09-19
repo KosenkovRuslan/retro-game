@@ -108,6 +108,8 @@ class Enemy {
 			if (!projecttile.free && this.game.checkCollision(this, projecttile)) {
 				this.markForDeletion = true
 				projecttile.reset()
+
+				if (!this.game.gameOver) this.game.score++
 			}
 		})
 	}
