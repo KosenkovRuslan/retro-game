@@ -212,7 +212,7 @@ class Game {
 		this.numberOfprojecttiles = 10
 		this.createProjecttile()
 
-		this.columns = 4
+		this.columns = 2
 		this.rows = 2
 		this.enemySize = 60
 
