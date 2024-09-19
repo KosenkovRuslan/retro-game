@@ -5,6 +5,7 @@ class Player {
 	x: number
 	y: number
 	speed: number
+	lives: number
 
 	constructor(game: Game) {
 		this.game = game
@@ -13,6 +14,7 @@ class Player {
 		this.x = this.game.width / 2 - this.width / 2
 		this.y = this.game.height - this.height
 		this.speed = 5 
+		this.lives = 10
 	}
 
 	draw(context: CanvasRenderingContext2D) {
