@@ -315,6 +315,20 @@ class Game {
 
 		this.waves.push(new Wave(this))
 	}
+
+	restart() {
+		this.player.restart()
+
+		this.columns = 2
+		this.rows = 2
+
+		this.waves = []
+		this.waves.push(new Wave(this))
+		this.waveCount = 1
+
+		this.score = 0
+		this.gameOver = false
+	}
 }
 
 window.addEventListener("load", () => {
