@@ -159,8 +159,13 @@ class Game {
 	height: number
 	player: Player
 	keys: string[]
-	projecttilesPool: Projecttile[] = []
-	numberOfprojecttiles = 10
+	projecttilesPool: Projecttile[]
+	numberOfprojecttiles: number
+
+	columns: number
+	rows: number
+	enemySize: number
+	waves: Wave[]
 
 	constructor(canvas: HTMLCanvasElement) {
 		this.canvas = canvas
@@ -169,7 +174,16 @@ class Game {
 		this.keys = []
 		this.player = new Player(this)
 
+		this.projecttilesPool = []
+		this.numberOfprojecttiles = 10
 		this.createProjecttile()
+
+		this.columns = 4
+		this.rows = 2
+		this.enemySize = 60
+
+		this.waves = []
+		this.waves.push(new Wave(this))
 
 		window.addEventListener("keydown", (event: KeyboardEvent) => {
 			if (this.keys.indexOf(event.key) === -1) this.keys.push(event.key)
@@ -187,9 +201,14 @@ class Game {
 	render(context: CanvasRenderingContext2D) {
 		this.player.draw(context)
 		this.player.update()
+
 		this.projecttilesPool.forEach(projecttile => {
 			projecttile.update()
 			projecttile.draw(context)
+		})
+
+		this.waves.forEach(wave => {
+			wave.render(context)
 		})
 	}
 
