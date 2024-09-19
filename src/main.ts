@@ -34,6 +34,12 @@ class Player {
 		
 		if (projecttile) projecttile.start(this.x + this.width * 0.5, this.y)		
 	}
+
+	restart() {
+		this.x = this.game.width / 2 - this.width / 2
+		this.y = this.game.height - this.height
+		this.lives = 10
+	}
 }
 
 class Projecttile {
