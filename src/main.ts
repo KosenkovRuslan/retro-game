@@ -137,6 +137,7 @@ class Wave {
 	speedX: number
 	speedY: number
 	enemies: Enemy[]
+	nextWaveTrigger: boolean
 
 	constructor(game: Game) {
 		this.game = game
@@ -147,6 +148,7 @@ class Wave {
 		this.speedX = 1
 		this.speedY = 0
 		this.enemies = []
+		this.nextWaveTrigger = false
 		this.create()
 	}
 
@@ -165,6 +167,8 @@ class Wave {
 			enemy.update(this.x, this.y)
 			enemy.draw(context)
 		})
+		
+		this.enemies = this.enemies.filter(enemy => !enemy.markForDeletion)
 	}
 
 	create() {
