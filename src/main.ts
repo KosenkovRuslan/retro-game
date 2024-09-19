@@ -47,7 +47,7 @@ class Projecttile {
 		this.height = 40
 		this.x = 0
 		this.y = 0
-		this.speed = 5
+		this.speed = 15
 		this.free = true
 	}
 
