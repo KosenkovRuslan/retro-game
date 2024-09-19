@@ -262,7 +262,7 @@ class Game {
 		}
 	}
 
-	checkCollision (a: Enemy, b: Projecttile) {
+	checkCollision (a: Enemy, b: Projecttile | Player) {
 		return (
 			a.x < b.x + b.width &&
 			a.x + a.width > b.x &&
