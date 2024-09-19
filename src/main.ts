@@ -43,8 +43,8 @@ class Projecttile {
 	free: boolean
 
 	constructor() {
-		this.width = 5
-		this.height = 10
+		this.width = 8
+		this.height = 40
 		this.x = 0
 		this.y = 0
 		this.speed = 5
