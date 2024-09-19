@@ -81,6 +81,7 @@ class Enemy {
 	y: number
 	positionX: number
 	positionY: number
+	markForDeletion: boolean
 	
 	constructor(game: Game, positionX: number, positionY: number) {
 		this.game = game
@@ -90,6 +91,7 @@ class Enemy {
 		this.y = 0
 		this.positionX = positionX
 		this.positionY = positionY
+		this.markForDeletion = false
 	}
 
 	draw(context: CanvasRenderingContext2D) {
@@ -99,6 +101,13 @@ class Enemy {
 	update(x: number, y: number) {
 		this.x = x + this.positionX
 		this.y = y + this.positionY
+
+		this.game.projecttilesPool.forEach(projecttile => {
+			if (!projecttile.free && this.game.checkCollision(this, projecttile)) {
+				this.markForDeletion = true
+				projecttile.reset()
+			}
+		})
 	}
 }
 
