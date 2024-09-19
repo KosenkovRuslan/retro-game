@@ -226,8 +226,8 @@ class Game {
 }
 
 window.addEventListener("load", () => {
-	const canvas = document.getElementById("app") as HTMLCanvasElement;
-	const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+	const canvas = document.getElementById("app") as HTMLCanvasElement
+	const ctx = canvas.getContext("2d") as CanvasRenderingContext2D
 
 	canvas.width = 600
 	canvas.height = 800
@@ -235,12 +235,12 @@ window.addEventListener("load", () => {
 	ctx.strokeStyle = 'white'
 	ctx.lineWidth = 5
 
-	const game = new Game(canvas);
+	const game = new Game(canvas)
 
 	const animate = () => {
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		game.render(ctx);
-		window.requestAnimationFrame(animate);
+		ctx.clearRect(0, 0, canvas.width, canvas.height)
+		game.render(ctx)
+		window.requestAnimationFrame(animate)
 	}
 
 	animate()
