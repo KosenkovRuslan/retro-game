@@ -198,6 +198,8 @@ class Game {
 	projecttilesPool: Projecttile[]
 	numberOfprojecttiles: number
 
+	fired: boolean
+
 	columns: number
 	rows: number
 	enemySize: number
@@ -218,6 +220,8 @@ class Game {
 		this.numberOfprojecttiles = 10
 		this.createProjecttile()
 
+		this.fired = false
+
 		this.columns = 2
 		this.rows = 2
 		this.enemySize = 60
@@ -230,11 +234,16 @@ class Game {
 		this.waveCount = 1
 
 		window.addEventListener("keydown", (event: KeyboardEvent) => {
+			if (event.key === " " && !this.fired) this.player.shoot()
+			this.fired = true
+			if (event.key === "r" && this.gameOver) {
+				this.restart()
+			}
 			if (this.keys.indexOf(event.key) === -1) this.keys.push(event.key)
-			if (event.key === " ") this.player.shoot()	
 		})
 
 		window.addEventListener("keyup", (event: KeyboardEvent) => {
+			this.fired = false
 			const index = this.keys.indexOf(event.key)
 			if (index > -1) {
 				this.keys.splice(index, 1)
