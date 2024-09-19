@@ -229,8 +229,11 @@ window.addEventListener("load", () => {
 	const canvas = document.getElementById("app") as HTMLCanvasElement;
 	const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
-	canvas.width = 600;
-	canvas.height = 800;
+	canvas.width = 600
+	canvas.height = 800
+	ctx.fillStyle = 'white'
+	ctx.strokeStyle = 'white'
+	ctx.lineWidth = 5
 
 	const game = new Game(canvas);
 
