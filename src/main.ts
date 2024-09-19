@@ -196,6 +196,10 @@ class Game {
 	rows: number
 	enemySize: number
 	waves: Wave[]
+	waveCount: number
+
+	score: number
+	gameOver: boolean
 
 	constructor(canvas: HTMLCanvasElement) {
 		this.canvas = canvas
@@ -212,8 +216,12 @@ class Game {
 		this.rows = 2
 		this.enemySize = 60
 
+		this.score = 0
+		this.gameOver = false
+
 		this.waves = []
 		this.waves.push(new Wave(this))
+		this.waveCount = 1
 
 		window.addEventListener("keydown", (event: KeyboardEvent) => {
 			if (this.keys.indexOf(event.key) === -1) this.keys.push(event.key)
