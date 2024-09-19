@@ -12,7 +12,7 @@ class Player {
 		this.height = 100
 		this.x = this.game.width / 2 - this.width / 2
 		this.y = this.game.height - this.height
-		this.speed = 5
+		this.speed = 5 
 	}
 
 	draw(context: CanvasRenderingContext2D) {
@@ -83,6 +83,8 @@ class Game {
 	height: number
 	player: Player
 	keys: string[]
+	projecttilesPool: Projecttile[] = []
+	numberOfprojecttiles = 10
 
 	constructor(canvas: HTMLCanvasElement) {
 		this.canvas = canvas
@@ -91,11 +93,11 @@ class Game {
 		this.keys = []
 		this.player = new Player(this)
 
+		this.createProjecttile()
+
 		window.addEventListener("keydown", (event: KeyboardEvent) => {
-			if (this.keys.indexOf(event.key) === -1) {
-				this.keys.push(event.key)
-			}
-			console.log(this.keys)
+			if (this.keys.indexOf(event.key) === -1) this.keys.push(event.key)
+			if (event.key === " ") this.player.shoot()	
 		})
 
 		window.addEventListener("keyup", (event: KeyboardEvent) => {
@@ -103,13 +105,28 @@ class Game {
 			if (index > -1) {
 				this.keys.splice(index, 1)
 			}
-			console.log(this.keys)
 		})
 	}
 
 	render(context: CanvasRenderingContext2D) {
 		this.player.draw(context)
 		this.player.update()
+		this.projecttilesPool.forEach(projecttile => {
+			projecttile.update()
+			projecttile.draw(context)
+		})
+	}
+
+	createProjecttile () {
+		for (let i = 0; i < this.numberOfprojecttiles; i++) {
+			this.projecttilesPool.push(new Projecttile())
+		}
+	}
+
+	getProjecttile () {
+		for (let i = 0; i < this.projecttilesPool.length; i++) {
+			if (this.projecttilesPool[i].free) return this.projecttilesPool[i]
+		}
 	}
 }
 
