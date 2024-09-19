@@ -237,6 +237,7 @@ class Game {
 	}
 
 	render(context: CanvasRenderingContext2D) {
+		this.drawStatusText(context)
 		this.player.draw(context)
 		this.player.update()
 
@@ -269,6 +270,37 @@ class Game {
 			a.y < b.y + b.height &&
 			a.height + a.y > b.y
 		)
+	}
+
+	drawStatusText(context: CanvasRenderingContext2D) {
+		context.save()
+
+		context.shadowOffsetX = 2
+		context.shadowOffsetY = 2
+		context.shadowColor = "black"
+ 		context.fillText(`Счёт: ${this.score}`, 20, 40)
+ 		context.fillText(`Волна: ${this.waveCount}`, 20, 80)
+
+		for (let i = 0; i < this.player.lives; i++) {
+			context.fillRect(20 + 10 * i, 100, 5, 30)
+		}
+
+		if (this.gameOver) {
+			context.textAlign = "center"
+			context.font = "80px Impact"
+			context.fillText("Игра окончена!", this.width * 0.5, this.height * 0.5)
+
+			context.font = "20px Impact"
+			context.fillText('Нажмите клавишу R для перезапуска', this.width * 0.5, this.height * 0.5 + 30)
+		}
+		context.restore()
+	}
+
+	newWave () {
+		if (Math.random() < 0.5 && this.columns * this.enemySize < this.width * 0.8) this.columns++
+		else if (this.rows * this.enemySize < this.height * 0.6) this.rows++
+
+		this.waves.push(new Wave(this))
 	}
 }
 
