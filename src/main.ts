@@ -155,11 +155,11 @@ class BeetleMorph extends Enemy {
 	constructor(game: Game, positionX: number, positionY: number) {
 		super(game, positionX, positionY)
 		this.image = document.getElementById("beetlemorph") as HTMLImageElement
-	}
-
-	draw(context: CanvasRenderingContext2D) {
-		context.strokeRect(this.x, this.y, this.width, this.height)
-		context.drawImage(this.image, this.x, this.y)
+		this.frameX = 0
+		this.frameY = Math.floor(Math.random() * 4)
+		this.maxFrame = 2
+		this.lives = 1    
+		this.maxLives = this.lives
 	}
 }
 
