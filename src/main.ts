@@ -30,9 +30,9 @@ class Player {
 	}
 
 	shoot () {
-		const projecttile = this.game.getProjecttile()
+		const projectile = this.game.getProjectile()
 		
-		if (projecttile) projecttile.start(this.x + this.width * 0.5, this.y)		
+		if (projectile) projectile.start(this.x + this.width * 0.5, this.y)		
 	}
 
 	restart() {
@@ -42,7 +42,7 @@ class Player {
 	}
 }
 
-class Projecttile {
+class Projectile {
 	width: number
 	height: number
 	x: number
@@ -110,10 +110,10 @@ class Enemy {
 		this.x = x + this.positionX
 		this.y = y + this.positionY
 
-		this.game.projecttilesPool.forEach(projecttile => {
-			if (!projecttile.free && this.game.checkCollision(this, projecttile)) {
+		this.game.projectilesPool.forEach(projectile => {
+			if (!projectile.free && this.game.checkCollision(this, projectile)) {
 				this.markForDeletion = true
-				projecttile.reset()
+				projectile.reset()
 
 				if (!this.game.gameOver) this.game.score++
 			}
@@ -195,8 +195,8 @@ class Game {
 	height: number
 	player: Player
 	keys: string[]
-	projecttilesPool: Projecttile[]
-	numberOfprojecttiles: number
+	projectilesPool: Projectile[]
+	numberOfprojectiles: number
 
 	fired: boolean
 
@@ -216,9 +216,9 @@ class Game {
 		this.keys = []
 		this.player = new Player(this)
 
-		this.projecttilesPool = []
-		this.numberOfprojecttiles = 10
-		this.createProjecttile()
+		this.projectilesPool = []
+		this.numberOfprojectiles = 10
+		this.createProjectile()
 
 		this.fired = false
 
@@ -256,9 +256,9 @@ class Game {
 		this.player.draw(context)
 		this.player.update()
 
-		this.projecttilesPool.forEach(projecttile => {
-			projecttile.update()
-			projecttile.draw(context)
+		this.projectilesPool.forEach(projectile => {
+			projectile.update()
+			projectile.draw(context)
 		})
 
 		this.waves.forEach(wave => {
@@ -273,19 +273,19 @@ class Game {
 		})
 	}
 
-	createProjecttile () {
-		for (let i = 0; i < this.numberOfprojecttiles; i++) {
-			this.projecttilesPool.push(new Projecttile())
+	createProjectile () {
+		for (let i = 0; i < this.numberOfprojectiles; i++) {
+			this.projectilesPool.push(new Projectile())
 		}
 	}
 
-	getProjecttile () {
-		for (let i = 0; i < this.projecttilesPool.length; i++) {
-			if (this.projecttilesPool[i].free) return this.projecttilesPool[i]
+	getProjectile () {
+		for (let i = 0; i < this.projectilesPool.length; i++) {
+			if (this.projectilesPool[i].free) return this.projectilesPool[i]
 		}
 	}
 
-	checkCollision (a: Enemy, b: Projecttile | Player) {
+	checkCollision (a: Enemy, b: Projectile | Player) {
 		return (
 			a.x < b.x + b.width &&
 			a.x + a.width > b.x &&
