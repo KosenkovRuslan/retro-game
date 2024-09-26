@@ -129,7 +129,7 @@ class Enemy {
 				this.hit(1)
 				projectile.reset()
 
-				if (!this.game.gameOver) this.game.score++
+				if (!this.game.gameOver) this.game.score += this.maxLives
 			}
 		})
 
