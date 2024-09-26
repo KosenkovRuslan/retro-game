@@ -90,6 +90,12 @@ class Enemy {
 	positionX: number
 	positionY: number
 	markForDeletion: boolean
+	image: HTMLImageElement | null
+	frameX: number
+	frameY: number
+	maxFrame: number
+	lives: number
+	maxLives: number
 	
 	constructor(game: Game, positionX: number, positionY: number) {
 		this.game = game
@@ -100,6 +106,12 @@ class Enemy {
 		this.positionX = positionX
 		this.positionY = positionY
 		this.markForDeletion = false
+		this.image = null
+		this.frameX = 0
+		this.frameY = 0
+		this.maxFrame = 0
+		this.lives = 0
+		this.maxLives = 0
 	}
 
 	draw(context: CanvasRenderingContext2D) {
