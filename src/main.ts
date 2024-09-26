@@ -124,7 +124,7 @@ class Enemy {
 
 		this.game.projectilesPool.forEach(projectile => {
 			if (!projectile.free && this.game.checkCollision(this, projectile)) {
-				this.markForDeletion = true
+				this.hit(1)
 				projectile.reset()
 
 				if (!this.game.gameOver) this.game.score++
@@ -143,6 +143,10 @@ class Enemy {
 			this.game.gameOver = true
 			this.markForDeletion = true
 		}
+	}
+
+	hit(damage: number) {
+		this.lives -= damage
 	}
 }
 
