@@ -133,6 +133,12 @@ class Enemy {
 			}
 		})
 
+		if (this.lives < 1) {
+			this.frameX++
+			
+			if (this.frameX > this.maxFrame) this.markForDeletion = true 
+		}
+
 		if (this.game.checkCollision(this, this.game.player)) {
 			this.markForDeletion = true
 
