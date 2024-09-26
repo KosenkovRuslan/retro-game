@@ -297,7 +297,15 @@ class Game {
 		})
 	}
 
-	render(context: CanvasRenderingContext2D) {
+	render(context: CanvasRenderingContext2D, deltaTime: number) {
+		// sprite timing
+		if (this.spriteTimer > this.spriteInterval) {
+			this.spriteUpdate = true
+			this.spriteTimer = 0
+		} else {
+			this.spriteUpdate = false
+			this.spriteTimer += deltaTime
+		}
 		this.drawStatusText(context)
 		this.player.draw(context)
 		this.player.update()
