@@ -246,6 +246,10 @@ class Game {
 	score: number
 	gameOver: boolean
 
+	spriteUpdate: boolean
+	spriteTimer: number
+	spriteInterval: number
+
 	constructor(canvas: HTMLCanvasElement) {
 		this.canvas = canvas
 		this.width = this.canvas.width
@@ -269,6 +273,10 @@ class Game {
 		this.waves = []
 		this.waves.push(new Wave(this))
 		this.waveCount = 1
+
+		this.spriteUpdate = false
+		this.spriteTimer = 0
+		this.spriteInterval = 140
 
 		window.addEventListener("keydown", (event: KeyboardEvent) => {
 			if (event.key === " " && !this.fired) this.player.shoot()
