@@ -172,7 +172,7 @@ class Wave {
 	}
 
 	render (context: CanvasRenderingContext2D) {
-		if (this.y < 0) this.y += 5
+		if (this.y < 0) this.y += 1
 		this.speedY = 0
 
 		if (this.x < 0 || this.x > this.game.width - this.width) {
