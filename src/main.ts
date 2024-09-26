@@ -134,6 +134,19 @@ class Enemy {
 	}
 }
 
+class BeetleMorph extends Enemy {
+	image: HTMLImageElement
+	constructor(game: Game, positionX: number, positionY: number) {
+		super(game, positionX, positionY)
+		this.image = document.getElementById("beetlemorph") as HTMLImageElement
+	}
+
+	draw(context: CanvasRenderingContext2D) {
+		context.strokeRect(this.x, this.y, this.width, this.height)
+		context.drawImage(this.image, this.x, this.y)
+	}
+}
+
 class Wave {
 	game: Game
 	width: number
